@@ -1,2 +1,1 @@
-# request-header-microservice
-Request header parser microservice for FreeCodeCamp
+# Backend Challenges boilerplate - package.json
