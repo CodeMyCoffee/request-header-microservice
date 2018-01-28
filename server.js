@@ -35,7 +35,13 @@ app.route('/_api/package.json')
   
 app.route('/')
     .get(function(req, res) {
-		  res.sendFile(process.cwd() + '/views/index.html');
+      var ip = req.headers['x-forwarded-for']
+      var result = {
+        'ipaddress': ip,
+        'language': req.headers["accept-language"].split(',')[0],
+        'software': req.headers['user-agent'].split(') ')[0].split(' (')[1]
+      };
+      res.send(result);
     })
 
 // Respond not found to all the wrong routes
@@ -53,7 +59,7 @@ app.use(function(err, req, res, next) {
   }  
 })
 
-app.listen(process.env.PORT, function () {
+app.listen(8080, function () {
   console.log('Node.js listening ...');
 });
 
