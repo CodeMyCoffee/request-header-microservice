@@ -35,7 +35,7 @@ app.route('/_api/package.json')
   
 app.route('/')
     .get(function(req, res) {
-      var ip = req.headers['x-forwarded-for']
+      var ip = req.headers['x-forwarded-for'].split(',')[0]
       var result = {
         'ipaddress': ip,
         'language': req.headers["accept-language"].split(',')[0],
